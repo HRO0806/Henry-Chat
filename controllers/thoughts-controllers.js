@@ -37,15 +37,6 @@ const thoughtsController = {
         })
         .catch(err => res.json(err));
     },
-    removeReply({ params }, res) {
-        Thought.findOneAndUpdate(
-            {_id: params.thoughtId },
-            {$pull: {replies: {replyId: params.replyId}}},
-            {new: true}
-        )
-        .then(dbUserData => res.json(dbUserData))
-        .catch(err => res.json(err));
-    },
     removeThought({ params }, res) {
         Thought.findOneAndDelete({ _id: params.thoughtId })
           .then(deletedThought => {
@@ -66,7 +57,16 @@ const thoughtsController = {
             res.json(dbUserData);
           })
           .catch(err => res.json(err));
-      }    
+      },
+      removeReply({ params, body }, res) {
+        Thought.findOneAndUpdate(
+            {_id: params.thoughtId },
+            {$pull: {replies: body}},
+            {new: true}
+        )
+        .then(dbUserData => res.json(dbUserData))
+        .catch(err => res.json(err));
+    }    
 };
 
 module.exports = thoughtsController;

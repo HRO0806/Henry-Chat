@@ -1,7 +1,7 @@
 const {Schema, model} = require('mongoose');
 const dateFormat = require('../utils/dateFormat');
 
-ReplySchema = new Schema(
+const ReplySchema = new Schema(
     {
         //set custom id to avoid confusion with parent comment _id
         replyId:{
@@ -27,7 +27,7 @@ ReplySchema = new Schema(
     }
 );
 
-const thoughtSchema = new Schema({
+const ThoughtSchema = new Schema({
     thoughtBody: {
         type: String,
         required: true,
@@ -49,7 +49,12 @@ const thoughtSchema = new Schema({
 }
 );
 
-const Thought = model('Thought', thoughtSchema);
+
+ThoughtSchema.virtual('replyCount').get(function() {
+    return this.replies;
+});
+
+const Thought = model('Thought', ThoughtSchema);
 
 module.exports = Thought;
 

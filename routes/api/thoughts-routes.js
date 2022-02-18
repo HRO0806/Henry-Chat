@@ -14,15 +14,11 @@ router
 // /api/thoughts/<userId>/<commentId>
 router
     .route('/:userId/:thoughtId')
-    .delete(removeThought);
+    .delete(removeThought)
+    .put(addReply);
     
 router
-    .route('/userId/:thoughtId')
-    .put(addReply)
-    .delete(removeThought);
-    
-router
-    .route('/:userId/:commentId/:replyId')
+    .route('/:userId/:thoughtId/:replyId')
     .delete(removeReply);
     
 module.exports = router;    
