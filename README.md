@@ -17,3 +17,9 @@ https://drive.google.com/file/d/1bt74JpcIvwHlRHJyowPlQ2NsLLV-w2BY/view 
 
 Reply routes:
 https://drive.google.com/file/d/1pO4wYKgvSxmJ3_i5N4oOI7-ShcDrgOrM/view 
+
+## Technologies Used:
+* Node.js
+* npm
+* express.js
+* MySql
